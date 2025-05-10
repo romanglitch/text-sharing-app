@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto');
 
 const app = express();
-const port = 3000;
+const port = 4123;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -28,12 +28,26 @@ app.get('/:id', (req, res) => {
 
     if (text) {
         delete texts[id];
-        res.send(`<h1>${text}</h1><p>Ссылка больше не действительна.</p>`);
+        res.send(`
+            <h1>${text}</h1>
+            <p>Данная ссылка больше не доступна</p>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {     
+                    navigator.clipboard.writeText(document.getElementsByTagName('h1')[0].innerText).then(() => {
+                        document.body.append('Текст успешно скопирован в буфер обмена!')
+                    }).catch(() => {
+                        document.body.append('Ошибка при копировании текста!')
+                    });
+                });
+            </script>
+        `);
     } else {
-        res.send('<h1>Текст не найден</h1>');
+        res.send(`
+            <h1>Ссылка больше не действительна.</h1>
+        `);
     }
 });
 
 app.listen(port, () => {
-    console.log(`Сервер запущен на http://localhost:${port}`);
+    console.log(`Сервер запущен. PORT: ${port}`);
 });
