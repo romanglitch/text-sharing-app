@@ -17,12 +17,12 @@ app.get('/', (req, res) => {
 
 app.post('/submit', (req, res) => {
     const text = req.body.text;
-    const id = crypto.randomBytes(4).toString('hex');
+    const id = crypto.randomBytes(2).toString('hex');
     texts[id] = text;
-    res.send(`Ссылка для доступа к тексту: <a href="/text/${id}">/text/${id}</a>`);
+    res.send(`Ссылка для доступа к тексту: <a href="/${id}">/${id}</a>`);
 });
 
-app.get('/text/:id', (req, res) => {
+app.get('/:id', (req, res) => {
     const id = req.params.id;
     const text = texts[id];
 
