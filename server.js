@@ -28,9 +28,13 @@ app.get('/:id', (req, res) => {
 
     if (text) {
         delete texts[id];
-        res.send(`<h1>${text}</h1><p>Ссылка больше не действительна.</p>`);
+        res.send(`
+            <h1>${text}</h1>
+        `);
     } else {
-        res.send('<h1>Текст не найден</h1>');
+        res.send(`
+            <h1>Ссылка больше не действительна.</h1>
+        `);
     }
 });
 
