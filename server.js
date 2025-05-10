@@ -28,7 +28,7 @@ app.post('/submit', (req, res) => {
             Ссылка для доступа к тексту:
         </h1>
         <a href="/${id}">
-            ${req.host}/${id}
+            share.glitchweb.ru/${id}
         </a>
     `);
 });
