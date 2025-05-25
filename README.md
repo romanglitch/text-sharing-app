@@ -1,1 +1,1 @@
-# text-sharing-app
+### Test sharing app (next-frontend / strapi-backend)
