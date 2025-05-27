@@ -145,25 +145,25 @@ export default function IndexPage() {
                                     return (
                                         <Snippet
                                             className={`cursor-pointer`}
-                                            key={savedItem.id}
+                                            key={savedItem['id']}
                                             hideSymbol={true}
-                                            color={inputText === savedItem.text ? "primary" : "default"}
+                                            color={inputText === savedItem['text'] ? "primary" : "default"}
                                             copyIcon={(
                                                 <span>&#128465;</span>
                                             )}
                                             onClick={(e) => {
-                                                setInputText(savedItem.text)
-                                                setSaveSelected(savedItem.text)
+                                                setInputText(savedItem['text'])
+                                                setSaveSelected(savedItem['text'])
                                             }}
                                             disableTooltip={true}
                                             onCopy={(value) => {
-                                                saved.splice(savedItem.id, 1)
+                                                saved.splice(savedItem['id'], 1)
 
                                                 localStorage.setItem('saved', JSON.stringify(saved))
                                                 setSaved(JSON.parse(localStorage.getItem('saved') as string))
                                             }}
                                         >
-                                            {savedItem.name}
+                                            {savedItem['name']}
                                         </Snippet>
                                     )
                                 })
