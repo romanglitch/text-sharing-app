@@ -4,6 +4,15 @@ import { v4 as uuidv4 } from 'uuid';
 type TextsStore = { [id: string]: string };
 const texts: TextsStore = {};
 
+const generateID = () => {
+    const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    for (let i = 0; i < 3; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return result;
+}
+
 export default function handler(
     req: NextApiRequest,
     res: NextApiResponse
@@ -15,10 +24,10 @@ export default function handler(
             return res.status(400).json({ error: 'Текст обязателен' });
         }
 
-        const id = uuidv4();
+        const id = generateID();
         texts[id] = text;
 
-        res.status(200).json({ link: `/view/${id}` });
+        res.status(200).json({ link: `/${id}` });
 
         // Авто удаление ссылки через 60 сек
         setTimeout(() => {

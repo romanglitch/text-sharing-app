@@ -24,6 +24,8 @@ export default function IndexPage() {
 
     const [saveSelected, setSaveSelected] = React.useState('--clear');
 
+    const [loading, setLoading] = React.useState(false);
+
     useEffect(() => {
         // Check if the code is running on the client side
         if (process) {
@@ -99,14 +101,18 @@ export default function IndexPage() {
                     ) : false}
                     <div className="flex gap-3">
                         {!isSave ? (
-                            <Button className="w-full" color="primary" size="lg" onPress={async (e) => {
+                            <Button className="w-full" color="primary" size="lg" isLoading={loading} onPress={async (e) => {
+                                setLoading(true)
+
                                 const response = await fetch('/api/generate-link', {
                                     method: 'POST',
                                     headers: {'Content-Type': 'application/json'},
                                     body: JSON.stringify({text: inputText}),
                                 });
                                 const data = await response.json();
+
                                 setGeneratedURL(data.link)
+                                setLoading(false)
                             }}>CREATE LINK</Button>
                         ) : false}
                         <Button className={isSave ? 'w-full' : 'w-fit'} color={isSave ? "success" : "default"} size="lg"
