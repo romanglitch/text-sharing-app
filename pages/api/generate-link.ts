@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { v4 as uuidv4 } from 'uuid';
 
 type TextsStore = { [id: string]: string };
 const texts: TextsStore = {};

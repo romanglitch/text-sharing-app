@@ -1,13 +1,11 @@
-'use client'
-import React, {useCallback, useEffect, useState} from "react";
-import {title, subtitle} from "@/components/primitives";
+import React, {useEffect} from "react";
+import {title} from "@/components/primitives";
 import {EyeFilledIcon, EyeSlashFilledIcon} from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import {Input} from "@heroui/input";
 import {Button} from "@heroui/button";
 import {Snippet} from "@heroui/snippet";
 import {Card, CardBody, CardFooter, CardHeader} from "@heroui/card";
-import NextLink from "next/link";
 
 export default function IndexPage() {
     const [saved, setSaved] = React.useState([]);
@@ -27,9 +25,7 @@ export default function IndexPage() {
     const [loading, setLoading] = React.useState(false);
 
     useEffect(() => {
-        // Check if the code is running on the client side
         if (process) {
-            // Access the current page URL using window.location
             setCurrentUrl(window.location.host);
             setSaved(JSON.parse(localStorage.getItem('saved') as string) ? JSON.parse(localStorage.getItem('saved') as string) : () => {
                 localStorage.setItem('saved', JSON.stringify([]))
@@ -101,7 +97,7 @@ export default function IndexPage() {
                     ) : false}
                     <div className="flex gap-3">
                         {!isSave ? (
-                            <Button className="w-full" color="primary" size="lg" isLoading={loading} onPress={async (e) => {
+                            <Button className="w-full" color="primary" size="lg" isLoading={loading} onPress={async () => {
                                 setLoading(true)
 
                                 const response = await fetch('/api/generate-link', {
@@ -116,7 +112,7 @@ export default function IndexPage() {
                             }}>CREATE LINK</Button>
                         ) : false}
                         <Button className={isSave ? 'w-full' : 'w-fit'} color={isSave ? "success" : "default"} size="lg"
-                                onPress={async (e) => {
+                                onPress={async () => {
                                     if (isSave) {
                                         let lsSaved = JSON.parse(localStorage.getItem('saved') as string)
 
@@ -157,12 +153,12 @@ export default function IndexPage() {
                                             copyIcon={(
                                                 <span>&#128465;</span>
                                             )}
-                                            onClick={(e) => {
+                                            onClick={() => {
                                                 setInputText(savedItem['text'])
                                                 setSaveSelected(savedItem['text'])
                                             }}
                                             disableTooltip={true}
-                                            onCopy={(value) => {
+                                            onCopy={() => {
                                                 saved.splice(savedItem['id'], 1)
 
                                                 localStorage.setItem('saved', JSON.stringify(saved))

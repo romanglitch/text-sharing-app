@@ -6,8 +6,6 @@ import {EyeFilledIcon, EyeSlashFilledIcon} from "@/components/icons";
 import {Input} from "@heroui/input";
 import {Button} from "@heroui/button";
 import NextLink from "next/link";
-import {alert} from "@heroui/theme";
-import {Spinner} from "@heroui/spinner";
 
 export default function ViewTextPage() {
     const router = useRouter();
@@ -93,7 +91,7 @@ export default function ViewTextPage() {
                             type={isVisible ? "text" : "password"}
                             variant="bordered"
                             value={text}
-                            onClick={(e) => {
+                            onClick={() => {
                                 console.log(text)
                             }}
                         />
