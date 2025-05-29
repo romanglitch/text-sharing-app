@@ -1,16 +1,15 @@
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
-  NavbarMenu,
   NavbarBrand,
   NavbarItem,
-  NavbarMenuItem,
 } from "@heroui/navbar";
 import { Link } from "@heroui/link";
 import NextLink from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
+
 import {
   GithubIcon
 } from "@/components/icons";
@@ -20,13 +19,14 @@ export const Navbar = () => {
     <HeroUINavbar className="gl-navbar" position="sticky">
       <NavbarContent className="w-full" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
-            <p className="font-bold text-inherit">{siteConfig.name}</p>
-          </NextLink>
+            <NextLink className="flex flex-col" href="/">
+                <p className="font-bold text-inherit">{siteConfig.name}</p>
+                <p className="font-light text-sm text-inherit">{siteConfig.description}</p>
+            </NextLink>
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent
+        <NavbarContent
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
@@ -43,30 +43,7 @@ export const Navbar = () => {
           <GithubIcon className="text-default-500" />
         </Link>
         <ThemeSwitch />
-        {/*<NavbarMenuToggle />*/}
       </NavbarContent>
-
-      <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </div>
-      </NavbarMenu>
     </HeroUINavbar>
   );
 };
