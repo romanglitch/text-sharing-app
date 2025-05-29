@@ -14,3 +14,7 @@
 .--text-input.--savedValue > div {
     border-color: #006fee;
 }
+
+.gl-navbar > header {
+    max-width: 100%;
+}
