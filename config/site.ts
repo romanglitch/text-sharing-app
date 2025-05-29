@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Text sharing app",
+  name: "SHARE.GLITCHWEB.RU",
   description: "Share your text simplify",
   navItems: [
     {

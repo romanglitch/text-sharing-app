@@ -21,7 +21,7 @@ export const Navbar = () => {
       <NavbarContent className="w-full" justify="start">
         <NavbarBrand className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <p className="font-bold text-inherit">SHARE.GLITCHWEB</p>
+            <p className="font-bold text-inherit">{siteConfig.name}</p>
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
