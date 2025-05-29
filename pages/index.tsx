@@ -1,4 +1,3 @@
-'use client'
 import React, {useEffect} from "react";
 import {title} from "@/components/primitives";
 import {EyeFilledIcon, EyeSlashFilledIcon} from "@/components/icons";
