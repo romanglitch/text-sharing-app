@@ -29,6 +29,7 @@ export default function handler(
         res.status(200).json({ link: `/${id}` });
 
         // Авто удаление ссылки через 60 сек
+
         setTimeout(() => {
             delete texts[id];
         }, 60000);
