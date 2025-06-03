@@ -17,7 +17,7 @@ export default function handler(
 
         setTimeout(() => {
             delete texts[id];
-        }, 5000);
+        }, 60000);
     } else {
         res.setHeader('Allow', ['GET']);
         res.status(405).end(`Метод ${req.method} не разрешён`);
