@@ -175,14 +175,14 @@ export default function IndexPage() {
                         </div>
                     </div>
 
-                    <Card className="py-4 w-full pt-3">
-                        <CardHeader className="pb-0 pt-0 px-4 flex-col items-start">
-                            <small className="text-default-500">Favourites</small>
-                        </CardHeader>
-                        <CardBody className="overflow-visible py-2 pb-0">
-                            <div className="flex flex-col w-full gap-3">
-                                {saved.length ? (
-                                    saved.map(savedItem => {
+                    {saved.length ? (
+                        <Card className="py-4 w-full pt-3">
+                            <CardHeader className="pb-0 pt-0 px-4 flex-col items-start">
+                                <small className="text-default-500">Favourites</small>
+                            </CardHeader>
+                            <CardBody className="overflow-visible py-2 pb-0">
+                                <div className="flex flex-col w-full gap-3">
+                                    {saved.map(savedItem => {
                                         return (
                                             <Snippet
                                                 className={`cursor-pointer`}
@@ -207,13 +207,11 @@ export default function IndexPage() {
                                                 {savedItem['name']}
                                             </Snippet>
                                         )
-                                    })
-                                ) : (
-                                    <>No saved...</>
-                                )}
-                            </div>
-                        </CardBody>
-                    </Card>
+                                    })}
+                                </div>
+                            </CardBody>
+                        </Card>
+                    ) : false }
                 </section>
             </DefaultLayout>
         </>
