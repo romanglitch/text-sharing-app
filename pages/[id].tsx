@@ -2,7 +2,6 @@ import {useRouter} from 'next/router';
 import React, {useEffect, useState} from 'react';
 import DefaultLayout from "@/layouts/default";
 import {title} from "@/components/primitives";
-import {EyeFilledIcon, EyeSlashFilledIcon} from "@/components/icons";
 import {Input} from "@heroui/input";
 import {Button} from "@heroui/button";
 import NextLink from "next/link";
@@ -15,8 +14,6 @@ export default function ViewTextPage() {
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
     const [isVisible, setIsVisible] = React.useState(false);
-
-    const toggleVisibility = () => setIsVisible(!isVisible);
 
     useEffect(() => {
         if (!id || Array.isArray(id)) return;
@@ -88,27 +85,12 @@ export default function ViewTextPage() {
                             <Input
                                 isReadOnly
                                 className="w-full"
-                                endContent={
-                                    <button
-                                        aria-label="toggle password visibility"
-                                        className="focus:outline-none"
-                                        type="button"
-                                        onClick={toggleVisibility}
-                                    >
-                                        {isVisible ? (
-                                            <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none"/>
-                                        ) : (
-                                            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none"/>
-                                        )}
-                                    </button>
-                                }
+                                onFocus={() => setIsVisible(true)}
+                                onBlur={() => setIsVisible(false)}
                                 label="Text"
                                 type={isVisible ? "text" : "password"}
                                 variant="bordered"
                                 value={text}
-                                onClick={() => {
-                                    console.log(text)
-                                }}
                             />
                             <p>
                                 Ссылка будет удаленна через 60 сек.
